@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  voice-cleaner:
+    build:
+      context: ../
+      dockerfile: build/Dockerfile
+    volumes:
+      - ./input_video:/app/input_video:rw
+      - ./output_video:/app/output_video:rw
+      - ./fixtures:/app/fixtures:ro
+    environment:
+      - PYTHONUNBUFFERED=1
+    env_file:
+      - .env
+    stdin_open: true
+    tty: true
